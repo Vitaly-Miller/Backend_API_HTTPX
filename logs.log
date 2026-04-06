@@ -1,0 +1,16 @@
+
+04/06/2026 (10:46:03 AM):
+ERROR | test_env_values
+'Request' object has no attribute 'body'
+
+04/06/2026 (10:46:40 AM):
+ERROR | test_env_values
+'Request' object has no attribute 'body'
+
+04/06/2026 (10:47:07 AM):
+ERROR | test_env_values
+'Request' object has no attribute 'body'
+
+04/06/2026 (10:47:52 AM):
+ERROR | test_response_json_format
+'Request' object has no attribute 'body'

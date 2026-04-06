@@ -1,9 +1,8 @@
 #                                                           info
 # API variables and structures:
+import json
 
 def api_info(response):
-    import json
-
     # -------------------- BASIC INFO --------------------
     url = str(response.request.url)                      # 'https://api.example.com/endpoint'
     method = response.request.method                     # 'POST'

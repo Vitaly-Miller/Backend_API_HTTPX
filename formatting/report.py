@@ -61,7 +61,7 @@ class Report:
     # REQUEST Body ⮕
     @staticmethod
     def api_request_body(response):
-        print(f'{ANSI.GRAY}{'|'*18}{ANSI.GREEN} REQUEST Body{ANSI.GRAY}: ⮕ {'|'*18}')
+        print(f'{ANSI.GRAY}{'|'*17}{ANSI.GREEN} REQUEST Body{ANSI.GRAY}: ⮕ {'|'*17}')
 
         if response.request.content:
             obj = json.loads(response.request.content)
@@ -73,7 +73,7 @@ class Report:
     # RESPONSE Body ⬅︎
     @staticmethod
     def api_response_body(response):
-        print(f'{ANSI.GRAY}{'|'*18}{ANSI.BLUE} RESPONSE Body{ANSI.GRAY}: ⬅︎ {'|'*17}')
+        print(f'{ANSI.GRAY}{'|'*17}{ANSI.BLUE} RESPONSE Body{ANSI.GRAY}: ⬅︎ {'|'*16}')
         obj = response.json()
         obj_json = json.dumps(obj, indent=4, ensure_ascii=False)
         print(f'{obj_json}{ANSI.RESET}')
@@ -81,7 +81,7 @@ class Report:
     # REQUEST Headers ⮕
     @staticmethod
     def api_request_headers(response):
-        print(f'{ANSI.GRAY}{'|'*17}{ANSI.BROWN} REQUEST Headers{ANSI.GRAY}: ⮕ {'|'*16}')
+        print(f'{ANSI.GRAY}{'|'*16}{ANSI.BROWN} REQUEST Headers{ANSI.GRAY}: ⮕ {'|'*15}')
         obj = dict(response.request.headers)
         obj_json = json.dumps(obj, indent=4, ensure_ascii=False)
         print(f'{obj_json}{ANSI.RESET}')
@@ -89,7 +89,7 @@ class Report:
     # RESPONSE Headers ⬅︎
     @staticmethod
     def api_response_headers(response):
-        print(f'{ANSI.GRAY}{'|'*16}{ANSI.BROWN_ORANGE} RESPONSE Headers{ANSI.GRAY}: ⬅︎ {'|'*16}')
+        print(f'{ANSI.GRAY}{'|'*15}{ANSI.BROWN_ORANGE} RESPONSE Headers{ANSI.GRAY}: ⬅︎ {'|'*15}')
         obj = dict(response.headers)
         obj_json = json.dumps(obj, indent=4, ensure_ascii=False)
         print(f'{obj_json}{ANSI.RESET}')

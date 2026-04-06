@@ -35,4 +35,5 @@ class BaseAPI:
     # 🟥DELETE
     def delete(self, endpoint: str, **kwargs) -> httpx.Response:
         return self.request('DELETE', endpoint, **kwargs)
+
 #-----------------------------------------------------------------------------------------------------------------------

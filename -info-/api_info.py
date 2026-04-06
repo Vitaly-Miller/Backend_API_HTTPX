@@ -31,7 +31,7 @@ def api_info(response):
     request_headers = dict(response.request.headers)
     response_headers = dict(response.headers)
 
-    # -------------------- BODY JSON (PRETTY) --------------------
+    # --------------- BODY JSON (PRETTY) ----------------
     try:
         response_body_json = json.dumps(
             response.json(),

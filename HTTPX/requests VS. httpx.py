@@ -1,6 +1,6 @@
 """
-          requests vs. httpx           - Regular (Каждый запрос создает новое соединение)
-requests.Session() vs. httpx.Client()  - Connection Pooling (Повторное использование соединений)
+          requests VS. httpx           - Regular (Каждый запрос создает новое соединение)
+requests.Session() VS. httpx.Client()  - Connection Pooling (Повторное использование соединений)
 """
 import time
 import requests
@@ -18,16 +18,16 @@ print(f'Количество запросов: {cycles}')
 print('\n====================== Regular =======================')
 #--------------------------------------------
 # requests:
-print('┌🔸requests:', end='')                         # заголовок без переноса
+print('┌🔸requests:', end='')
 time_start = time.time()
 
 for _ in range(cycles):
-    response = requests.get(url=url)
-    print('.', end='')                               # добавляем точку при каждой итерации без переноса строки
+    response = requests.get(url=url)                         # 👈
+    print('.', end='')
 
 requests_time = round(time.time() - time_start, 3)
 avg_request_time = round(requests_time / cycles, 3)
-print(f'☑️{requests_time} sec. ({avg_request_time} sec./запрос)')                    # добавляем к предыдущей строке
+print(f'☑️{requests_time} sec. ({avg_request_time} sec./запрос)')
 
 #--------------------------------------------
 # httpx:
@@ -35,7 +35,7 @@ print('└───🔹httpx:', end='')
 time_start = time.time()
 
 for _ in range(cycles):
-    response = httpx.get(url=url)
+    response = httpx.get(url=url)                            # 👈
     print('.', end='')
 
 httpx_time = round(time.time() - time_start, 3)
@@ -58,8 +58,8 @@ time_start = time.time()
 
 with requests.Session() as session:
     for _ in range(cycles):
-        response = session.get(url=url)
-        print('․', end='')
+        response = session.get(url=url)                      # 👈
+        print('.', end='')
 
 requests_session_time = round(time.time() - time_start, 3)
 avg_requests_session_time = round(requests_session_time / cycles, 3)
@@ -71,7 +71,7 @@ time_start = time.time()
 
 with httpx.Client() as client:
     for _ in range(cycles):
-        response = client.get(url=url)
+        response = client.get(url=url)                        # 👈
         print('.', end='')
 
 httpx_client_time = round(time.time() - time_start, 3)

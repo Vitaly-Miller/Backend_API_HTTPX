@@ -12,7 +12,7 @@ class Check:
     @staticmethod
     def method(response, method: str):
         request_method = response.request.method
-        assert response.request.method == method, (
+        assert request_method == method, (
             f'❌Wrong method!\n'
             f'🔹Expected: "{method}"\n'
             f'🔸Actual:   "{request_method}"\n'
@@ -40,7 +40,7 @@ class Check:
     @staticmethod
     def response_time(response):
         response_time = round(response.elapsed.total_seconds(), 3)
-        assert response.elapsed.total_seconds() < Base.MAX_SEC, (
+        assert response_time < Base.MAX_SEC, (
             f'❌Response time!\n'
             f'🔹Expected: {Base.MAX_SEC} sec\n'
             f'🔸Actual:   {response_time} sec\n'

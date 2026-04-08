@@ -10,7 +10,7 @@ class BaseAPI:
     def __init__(self, base_url: str = Base.URL):
         self.base_url = base_url
 
-
+    # ⮕ Send request
     def request(self, method: str, endpoint: str, **kwargs) -> httpx.Response:
         return httpx.request(
             method=method,

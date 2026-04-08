@@ -54,17 +54,19 @@ print(response.request.read())        # b'{"userId":1,"title":"NEW TASK","comple
 print(response.request.__dict__)      # {'method': 'POST', 'url': URL('https://jsonplaceholder.typicode.com/todos'), 'headers': Headers({'host': 'jsonplaceholder.typicode.com', 'accept': '*/*', 'accept-encoding': 'gzip, deflate', ...
 
 #-----------------------------------------------------------------------------------------------------------------------
-# 🟨POST-запрос (Отправка файлов)
-# v.1
-files = {'file': ('file.txt', open('file.txt', 'rb'))}
-response = httpx.post("https://httpbin.org/post", files=files)
+# 🟨POST-запрос (⇪ Отправка файлов)
 
-print(response.json())                # {...,'files': {'file': 'Hello, World!'}, 'form': {}, 'origin': '172.56.122.170', ...}
-
-# v.2 (best practice)
+# v.1 ✅Good practice (Контекстный менеджер with)
 with open('file.txt', 'rb') as file:
     files = {'file': ('file.txt', file)}
     response = httpx.post("https://httpbin.org/post", files=files)
+
+print(response.json())                # {...,'files': {'file': 'Hello, World!'}, 'form': {}, 'origin': '172.56.122.170', ...}
+
+#----------------------------------------------------
+# v.2 🚫Bad practice
+files = {'file': ('file.txt', open('file.txt', 'rb'))}
+response = httpx.post("https://httpbin.org/post", files=files)
 
 print(response.json())                # {...,'files': {'file': 'Hello, World!'}, 'form': {}, 'origin': '172.56.122.170', ...}
 

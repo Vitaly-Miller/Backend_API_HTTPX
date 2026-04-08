@@ -27,6 +27,6 @@ try:
     response = httpx.get('https://jsonplaceholder.typicode.com/todos/1', timeout=timeout)
     response.raise_for_status()                   # raise - Вызовет исключение при превышении timeout
 except httpx.TimeoutException as e:
-    print(f'❌Timeout {response.elapsed.total_seconds()} > {timeout} sec.')          # ❌Timeout 0.064794 > 0.01 sec.
+    print(f'❌Timeout {round(response.elapsed.total_seconds(), 3)} > {timeout} sec.')          # ❌Timeout 0.064 > 0.01 sec.
 
 #-----------------------------------------------------------------------------------------------------------------------

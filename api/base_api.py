@@ -9,10 +9,11 @@ from data.data import Base
 class BaseAPI:
     def __init__(self, base_url: str = Base.URL):
         self.base_url = base_url
+        self.client = httpx.Client(http2=True)   # 👈 Client session + HTTP/2-support (pip install h2)
 
     # ⮕ Send request
     def request(self, method: str, endpoint: str, **kwargs) -> httpx.Response:
-        return httpx.request(
+        return self.client.request(              # 👈 Send client session request
             method=method,
             url=f'{self.base_url}{endpoint}',
             **kwargs

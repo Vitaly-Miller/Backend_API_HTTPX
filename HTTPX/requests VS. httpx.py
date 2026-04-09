@@ -1,5 +1,5 @@
 """
-          requests VS. httpx           - Regular (Каждый запрос создает новое соединение)
+requests VS. httpx                     - Regular (Каждый запрос создает новое соединение)
 requests.Session() VS. httpx.Client()  - Connection Pooling (Повторное использование соединений)
 """
 import time
@@ -81,14 +81,14 @@ httpx_client_time = round(time.time() - time_start, 3)
 avg_httpx_client_time = round(httpx_client_time / cycles, 3)
 print(f'☑️{httpx_client_time} sec. ({avg_httpx_client_time} sec./запрос)')
 
-#--------------------------------------------
+#---------------------------------------
 # РЕЗУЛЬТАТ (Connection Pooling):
 timing_session = [requests_session_time, httpx_client_time]
 percents_session = f'{(round((max(timing_session) / min(timing_session) - 1) * 100)):g}%'
 print(f'Разница: {percents_session}')
 
 
-#============================================
+#=======================================
 # ИТОГИ:
 print(f"""\n
 ╭─────────── requests ───────────╮

@@ -6,7 +6,6 @@ import httpx
 from data.data import Base
 from typing import Any
 
-
 #=======================================================================================================================
 class APIClient:
     def __init__(self, base_url: str = Base.URL):

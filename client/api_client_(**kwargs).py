@@ -24,13 +24,13 @@ class APIClient:
     def post(self, endpoint: str, **kwargs) -> httpx.Response:
         return self._request('POST', endpoint, **kwargs)
 
-    # 🟦PUT
-    def put(self, endpoint: str, **kwargs) -> httpx.Response:
-        return self._request('PUT', endpoint, **kwargs)
-
     # 🟪PATCH
     def patch(self, endpoint: str, **kwargs) -> httpx.Response:
         return self._request('PATCH', endpoint, **kwargs)
+
+    # 🟦PUT
+    def put(self, endpoint: str, **kwargs) -> httpx.Response:
+        return self._request('PUT', endpoint, **kwargs)
 
     # 🟥DELETE
     def delete(self, endpoint: str, **kwargs) -> httpx.Response:

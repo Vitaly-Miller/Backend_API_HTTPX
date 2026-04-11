@@ -2,10 +2,10 @@
 Authentication
 https://simple-books-api.click/api-clients
 """
-from api.base_api import BaseAPI
+from client.api_client import APIClient
 
 #=======================================================================================================================
-class Auth(BaseAPI):
+class Auth(APIClient):
     # 𝌆 DATA:
     ENDPOINT = '/api-clients'
 

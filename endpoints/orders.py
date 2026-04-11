@@ -2,10 +2,10 @@
 Orders
 https://simple-books-api.click/orders
 """
-from api.base_api import BaseAPI
+from client.api_client import APIClient
 
 #=======================================================================================================================
-class Orders(BaseAPI):
+class Orders(APIClient):
     # 𝌆 DATA:
     ENDPOINT = '/orders'
 

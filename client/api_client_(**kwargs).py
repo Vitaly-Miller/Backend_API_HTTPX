@@ -15,7 +15,7 @@ class APIClient:
     def _request(self, method: str, endpoint: str, **kwargs) -> httpx.Response:
         return self.client.request(method=method, url=endpoint, **kwargs)
 
-
+    #-------------------------------------------------------------------------------------------------------------------
     # 🟩GET
     def get(self, endpoint: str, **kwargs) -> httpx.Response:
         return self._request('GET', endpoint, **kwargs)
@@ -36,4 +36,4 @@ class APIClient:
     def delete(self, endpoint: str, **kwargs) -> httpx.Response:
         return self._request('DELETE', endpoint, **kwargs)
 
-    # -----------------------------------------------------------------------------------------------------------------------
+    #-------------------------------------------------------------------------------------------------------------------

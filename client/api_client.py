@@ -22,8 +22,8 @@ class APIClient:
     ) -> httpx.Response:
         return self.client.request(method=method, url=endpoint, **kwargs)
 
-    #-------------------------------------------------------------------------------------------------------------------
-    # 🟩GET
+
+    # 🟩GET ------------------------------------------------------------------------------------------------------------
     def get(
             self,
             endpoint: str,
@@ -33,8 +33,8 @@ class APIClient:
     ) -> httpx.Response:
         return self._request('GET', endpoint, params=params, headers=headers, timeout=timeout)
 
-    #-------------------------------------------------------------------------------------------------------------------
-    # 🟨POST
+
+    # 🟨POST -----------------------------------------------------------------------------------------------------------
     def post(
             self,
             endpoint: str,
@@ -47,8 +47,8 @@ class APIClient:
     ) -> httpx.Response:
         return self._request('POST', endpoint, params=params, headers=headers, json=json, data=data, files=files, timeout=timeout)
 
-    #------------------------------------------------------------------------------------------------------------------
-    # 🟪PATCH
+
+    # 🟪PATCH ----------------------------------------------------------------------------------------------------------
     def patch(
             self,
             endpoint: str,
@@ -61,8 +61,8 @@ class APIClient:
     ) -> httpx.Response:
         return self._request('PATCH', endpoint, params=params, headers=headers, json=json, data=data, files=files, timeout=timeout)
 
-    #-------------------------------------------------------------------------------------------------------------------
-    # 🟦PUT
+
+    # 🟦PUT ------------------------------------------------------------------------------------------------------------
     def put(
             self,
             endpoint: str,
@@ -75,8 +75,8 @@ class APIClient:
     ) -> httpx.Response:
         return self._request('PUT', endpoint, params=params, headers=headers, json=json, data=data, files=files, timeout=timeout)
 
-    #-------------------------------------------------------------------------------------------------------------------
-    # 🟥DELETE
+
+    # 🟥DELETE ---------------------------------------------------------------------------------------------------------
     def delete(
             self,
             endpoint: str,

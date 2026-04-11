@@ -4,7 +4,7 @@ List of books
 """
 from core.decorators import log, api_report
 from assertions.suites import Suite
-from core.functions import Func
+
 
 #=======================================================================================================================
 #---------------------- BASE API ----------------------

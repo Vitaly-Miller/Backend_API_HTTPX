@@ -6,7 +6,7 @@ from loguru import logger
 from functools import wraps
 from _pytest.outcomes import Failed
 from httpx import Response
-from core.functions import Func
+from core.tools import Tool
 
 #=======================================================================================================================
 # Время выполнения теста (функции) ⏱
@@ -56,7 +56,7 @@ def api_report(func):
         result = func(*args, **kwargs)
         response = result or next((v for v in kwargs.values() if isinstance(v, Response)), None)
         if response is not None:
-            Func.api_report(response)                                # 👈
+            Tool.api_report(response)                                # 👈
         return result
     return wrapper
 

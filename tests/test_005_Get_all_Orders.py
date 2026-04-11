@@ -18,6 +18,6 @@ def test_base_api(get_all_orders):
 @log
 @api_report
 def test_is_order_id_in_list(get_all_orders):
-    Check.value_in_response(get_all_orders, 'id', value=Base.order_id)
+    Check.is_value_in_response(get_all_orders, 'id', value=Base.order_id)
 
 #-----------------------------------------------------------------------------------------------------------------------

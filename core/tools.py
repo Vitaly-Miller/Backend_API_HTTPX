@@ -8,7 +8,7 @@ from formatting.report import Report
 from formatting.colors import ANSI
 
 #=======================================================================================================================
-class Func:
+class Tool:
     #-------------------- Get Test name -------------------
     @staticmethod
     def name_test():

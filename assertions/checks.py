@@ -2,8 +2,9 @@
 Assertions & Checks
 """
 import json
-from core.functions import Func
+from core.tools import Tool
 from data.data import Base
+from typing import Any
 
 #=======================================================================================================================
 class Check:
@@ -16,7 +17,7 @@ class Check:
             f'❌Wrong method!\n'
             f'🔹Expected: "{method}"\n'
             f'🔸Actual:   "{request_method}"\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     # 2) Status Code + response Error
@@ -33,7 +34,7 @@ class Check:
             f'❌Status code! {error_message}\n'
             f'🔹Expected: {code}\n'
             f'🔸Actual:   {response.status_code}\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     # 3) Response Time
@@ -44,38 +45,38 @@ class Check:
             f'❌Response time!\n'
             f'🔹Expected: {Base.MAX_SEC} sec\n'
             f'🔸Actual:   {response_time} sec\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
 
     #------------------------------------------------ "KEY": "VALUE" ---------------------------------------------------
     # KEY in response body [] & {}
     @staticmethod
-    def key_in_response(response, key: str):
+    def is_key_in_response(response, key: str):
         body = response.json()
         # for {}
         if isinstance(body, dict):
             assert key in body, (
                 f'❌No key "{key}" in Response️ body!\n'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
         # for []
         elif isinstance(body, list):
             for i, item in enumerate(body):
                 assert key in item, (
                     f'❌No key "{key}" in Response️ body!\n'
-                    f'{Func.name_test()}'
+                    f'{Tool.name_test()}'
                 )
         else:
             assert False, (
                 f'❌Unexpected Response body type: {type(body)}\n'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
 
 
     # VALUE in response body for {} & []
     @staticmethod
-    def value_in_response(response, key: str, value: bool):
+    def is_value_in_response(response, key: str, value: Any):
         body = response.json()
 
         # {} dict → обычная проверка
@@ -84,7 +85,7 @@ class Check:
                 f'❌Invalid value!\n'
                 f'🔹Expected: "{key}": "{value}"\n'
                 f'🔸Actual:   "{key}": "{body.get(key)}"\n'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
 
         # [] list → значение должно быть ХОТЯ БЫ В ОДНОМ элементе
@@ -93,13 +94,13 @@ class Check:
             assert found, (
                 f'❌Value not found in list!\n'
                 f'🔹Expected: "{key}": "{value}"\n'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
 
         else:
             assert False, (
                 f'❌Unexpected Response body type: {type(body)}\n'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
 
 
@@ -111,7 +112,7 @@ class Check:
             f'❌ Invalid Value Type of key "{key}"!\n'
             f'🔹Expected: {value_type.__name__}\n'
             f'🔸Actual:   {type(body[key]).__name__}\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     # Value Length
@@ -122,7 +123,7 @@ class Check:
             f'❌ Invalid Value length of key "{key}"!\n'
             f'🔹Expected length: {value_length}\n'
             f'🔸Actual length:   {len(response.json()[key])}\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     #----------------------------------------------- .env Values -------------------------------------------------------
@@ -130,24 +131,24 @@ class Check:
     @staticmethod
     def env_value_in_request_body(response, key: str, env_key: str):
         key_value = json.loads(response.request.content)[key]
-        env_key_value = Func.read_env(env_key)
+        env_key_value = Tool.read_env(env_key)
         assert key_value == env_key_value, (
             f'❌Invalid Value in .env!\n'
             f'🔹Expected: {key_value}\n'
             f'🔸Actual:   {env_key_value}\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     # from Response ⬅︎
     @staticmethod
     def env_value_in_response_body(response, key: str, env_key: str):
         key_value = response.json()[key]
-        env_key_value = Func.read_env(env_key)
+        env_key_value = Tool.read_env(env_key)
         assert key_value == env_key_value, (
             f'❌Invalid Key Value in .env!\n'
             f'🔹Expected: {key_value}\n'
             f'🔸Actual:   {env_key_value}\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
 
@@ -159,14 +160,14 @@ class Check:
             request_body = json.loads(response.request.content)
             assert isinstance(request_body, (dict, list)), (
                 f'❌Invalid Request Body format!'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
         else:
             assert (
                 f'\n⚠️ NO BODY in Request.\n'
                 f'The test is not relevant.\n'
                 f'Remove the check from the test!\n'
-                f'{Func.name_test()}'
+                f'{Tool.name_test()}'
             )
 
     # Response Body format ⬅︎
@@ -175,7 +176,7 @@ class Check:
         response_body = response.json()
         assert isinstance(response_body, (dict, list)), (
             f'❌Invalid Response Body format!\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     # Request Headers format ⮕
@@ -184,7 +185,7 @@ class Check:
         request_headers = dict(response.request.headers)
         assert isinstance(request_headers, (dict, list)), (
             f'❌Invalid Request Headers format!\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     # Response Headers format ⬅︎
@@ -193,7 +194,7 @@ class Check:
         response_headers = dict(response.headers)
         assert isinstance(response_headers, (dict, list)), (
             f'❌Invalid Response Headers format!\n'
-            f'{Func.name_test()}'
+            f'{Tool.name_test()}'
         )
 
     #-----------------------------------------------------------------------------------------------------------------------

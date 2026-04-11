@@ -3,10 +3,9 @@ Pytest fixtures
 """
 import json
 import pytest
-from core.functions import Func
+from core.tools import Tool
 from data.data import Base
 from data.generators import Fake
-from data.payloads import Payload
 from endpoints.auth import Auth
 from endpoints.books import Books
 from endpoints.orders import Orders
@@ -17,11 +16,11 @@ from endpoints.orders import Orders
 # Create Client
 @pytest.fixture(scope='module')
 def create_client():
-    response = Auth().create_client(json=Payload.new_client_json)
+    response = Auth().create_client()
     # 💾 Saving to .env
-    Func.save_env(json.loads(response.request.content)['clientName'],'CLIENT_NAME')     # from Request body ⮕
-    Func.save_env(json.loads(response.request.content)['clientEmail'],'CLIENT_EMAIL')   # from Request body ⮕
-    Func.save_env(response.json()['accessToken'],'ACCESS_TOKEN')                        # from Response body ⬅︎
+    Tool.save_env(json.loads(response.request.content)['clientName'], 'CLIENT_NAME')  # from Request body ⮕
+    Tool.save_env(json.loads(response.request.content)['clientEmail'], 'CLIENT_EMAIL')  # from Request body ⮕
+    Tool.save_env(response.json()['accessToken'], 'ACCESS_TOKEN')  # from Response body ⬅︎
     return response
 
 
@@ -35,8 +34,7 @@ def list_of_books():
 # Get a single book (by Book ID)
 @pytest.fixture(scope='module')
 def get_book():
-    book_id = Fake.book_id
-    response = Books().get_book(book_id)
+    response = Books().get_book()
     return response
 
 
@@ -44,15 +42,15 @@ def get_book():
 # Create order
 @pytest.fixture(scope='module')
 def create_order():
-    response = Orders().create_order(headers=Payload.token_json, json=Payload.create_order_json)
+    response = Orders().create_order()
     # 💾 Saving to .env
-    Func.save_env(response.json()['orderId'],'ORDER_ID')
+    Tool.save_env(response.json()['orderId'],'ORDER_ID')
     return response
 
 # Get ALL orders
 @pytest.fixture(scope='module')
 def get_all_orders():
-    response = Orders().get_all_orders(headers=Payload.token_json)
+    response = Orders().get_all_orders()
     return response
 
 

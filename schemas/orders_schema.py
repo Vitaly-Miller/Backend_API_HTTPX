@@ -6,7 +6,7 @@ https://jsontopydantic.com
 import pytest
 from typing import Literal
 from pydantic import BaseModel, Field, ValidationError
-from core.functions import Func
+from core.tools import Tool
 from data.data import Base
 
 #================================================== Orders schema =======================================================
@@ -23,7 +23,7 @@ def check_create_order_response_body_schema(response):
     except ValidationError as e:
         pytest.fail(
             '❌Invalid Schema!\n'
-            f'{Func.name_test()}\n'
+            f'{Tool.name_test()}\n'
             f'{e}', pytrace=False)
 
 #-------------------------------------------------------------

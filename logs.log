@@ -21,3 +21,18 @@ ERROR | test_is_order_id_in_list
 🔹Expected: "id": "HT8l2sEUBGLBx9i93elp4"
 👉[test_005_Get_all_Orders.py] --> [test_is_order_id_in_list] -> [value_in_response]
 
+
+04/11/2026 (11:22:50 AM):
+ERROR | test_env_values
+name 'Func' is not defined
+
+04/11/2026 (11:23:02 AM):
+ERROR | test_env_values
+name 'Func' is not defined
+
+04/11/2026 (11:52:02 AM):
+ERROR | test_is_order_id_in_list
+❌Value not found in list!
+🔹Expected: "id": "JE3_qGNL7TEQ_96IfgPTa"
+👉[test_005_Get_all_Orders.py] --> [test_is_order_id_in_list] -> [is_value_in_response]
+

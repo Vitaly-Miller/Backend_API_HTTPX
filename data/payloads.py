@@ -7,22 +7,22 @@ from data.generators import Fake
 #=======================================================================================================================
 class Payload:
     # New Client
-    new_client_json = {
+    new_client = {
         "clientName": Fake.new_client_name,
         "clientEmail": Fake.new_client_email
     }
 
     # Current Client (from .env)
-    client_json = {
+    client = {
         "clientName": Base.CLIENT_NAME,
         "clientEmail": Base.CLIENT_EMAIL
     }
 
     # Create Order
-    create_order_json = {
+    create_order = {
       "bookId": Fake.book_id,
       "customerName": Base.CLIENT_NAME
     }
 
     # Token
-    token_json = {'Authorization': Base.ACCESS_TOKEN}
+    token = {'Authorization': Base.ACCESS_TOKEN}

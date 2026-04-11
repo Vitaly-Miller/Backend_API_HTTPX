@@ -18,7 +18,7 @@ def test_base_api(create_order):
 # Order status (True/False)
 @log
 def test_create_order_status(create_order):
-    Check.value_in_response(create_order, 'created', True)
+    Check.is_value_in_response(create_order, 'created', True)
 
 # Order ID type
 @log

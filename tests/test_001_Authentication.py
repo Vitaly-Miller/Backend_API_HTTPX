@@ -17,8 +17,8 @@ def test_base_api(create_client):
 #------------------ Token (Key/Value) -----------------
 # Token is in Response body
 @log
-def test_token_key_in_response(create_client):
-    Check.key_in_response(create_client, 'accessToken')
+def test_is_token_key_in_response(create_client):
+    Check.is_key_in_response(create_client, 'accessToken')
 
 # Token type
 @log

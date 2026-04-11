@@ -3,6 +3,7 @@ Books
 https://simple-books-api.click/books
 """
 from client.api_client import APIClient
+from data.generators import Fake
 
 #=======================================================================================================================
 class Books(APIClient):
@@ -14,5 +15,5 @@ class Books(APIClient):
     def list_of_books(self):
         return self.get(self.ENDPOINT)
 
-    def get_book(self, book_id):
+    def get_book(self, book_id=Fake.book_id):
         return self.get(f'{self.ENDPOINT}/{book_id}')

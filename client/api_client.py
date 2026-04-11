@@ -12,7 +12,7 @@ class APIClient:
         self.client = httpx.Client(base_url=base_url, http2=True)   # 👈 (Optional) HTTP/2-support (pip install h2)
 
 
-    # ➡️ Внутренний _метод — сюда логи, авторизация, retry
+    # ➡️Внутренний _метод — сюда логи, авторизация, retry
     def _request(
             self,
             method: str,

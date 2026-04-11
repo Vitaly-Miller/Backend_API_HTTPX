@@ -18,7 +18,7 @@ class Base:
     CLIENT_EMAIL = os.getenv('CLIENT_EMAIL')
     ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 
-    # ORDERS (from .env)
+    # ORDERS
     order_id = os.getenv('ORDER_ID')
 
     # LEN (LENGTH)

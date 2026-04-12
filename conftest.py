@@ -1,9 +1,7 @@
 """
 Pytest fixtures
 """
-import json
 import pytest
-from core.tools import Tool
 from data.data import Base
 from data.generators import Fake
 from endpoints.auth import Auth
@@ -11,47 +9,34 @@ from endpoints.books import Books
 from endpoints.orders import Orders
 
 #=======================================================================================================================
-
 #--------------------- AUTHENTICATION --------------------
 # Create Client
 @pytest.fixture(scope='module')
 def create_client():
-    response = Auth().create_client()
-    # 💾 Saving to .env
-    Tool.save_env(json.loads(response.request.content)['clientName'], 'CLIENT_NAME')  # from Request body ⮕
-    Tool.save_env(json.loads(response.request.content)['clientEmail'], 'CLIENT_EMAIL')  # from Request body ⮕
-    Tool.save_env(response.json()['accessToken'], 'ACCESS_TOKEN')  # from Response body ⬅︎
-    return response
-
+    return Auth().create_client()
 
 #------------------------- BOOKS -------------------------
 # List of books
 @pytest.fixture(scope='module')
 def list_of_books():
-    response = Books().list_of_books()
-    return response
+    return Books().list_of_books()
 
 # Get a single book (by Book ID)
 @pytest.fixture(scope='module')
 def get_book():
-    response = Books().get_book()
-    return response
+    return Books().get_book()
 
 
 #------------------------- ORDERS -------------------------
 # Create order
 @pytest.fixture(scope='module')
 def create_order():
-    response = Orders().create_order()
-    # 💾 Saving to .env
-    Tool.save_env(response.json()['orderId'],'ORDER_ID')
-    return response
+    return Orders().create_order()
 
 # Get ALL orders
 @pytest.fixture(scope='module')
 def get_all_orders():
-    response = Orders().get_all_orders()
-    return response
+    return Orders().get_all_orders()
 
 
 

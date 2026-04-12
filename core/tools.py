@@ -2,6 +2,7 @@
 Functions
 """
 import inspect
+import json
 import os
 from dotenv import set_key, dotenv_values
 from formatting.report import Report
@@ -34,6 +35,12 @@ class Tool:
         key_value = dotenv_values('.env')      # ← перечитывает файл каждый раз
         return key_value.get(env_key)
 
+    # 💾 Saving User data to .env
+    @staticmethod
+    def save_user_data(response):
+        Tool.save_env(json.loads(response.request.content)['clientName'], 'CLIENT_NAME')    # from Request body ⮕
+        Tool.save_env(json.loads(response.request.content)['clientEmail'], 'CLIENT_EMAIL')  # from Request body ⮕
+        Tool.save_env(response.json()['accessToken'], 'ACCESS_TOKEN')                       # from Response body ⬅︎
 
     #------------- ✨API REPORT in console ---------------
     """ ⚠️ USE IN THE FINAL TEST """

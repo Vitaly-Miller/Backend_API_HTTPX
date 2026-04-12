@@ -1,6 +1,6 @@
 """
 API Client
-(HTTPX)
+(httpx)
 """
 import httpx
 from data.data import Base
@@ -12,7 +12,7 @@ class APIClient:
         self.client = httpx.Client(base_url=base_url, http2=True)   # 👈(Optional) HTTP/2-support (pip install h2)
 
 
-    # 🚀Send request ---------------------------------------------------------------------------------------------------
+    # 🚀Send request 🟩🟨🟪🟦🟥----------------------------------------------------------------------------------------
     def _request(
             self,
             method: str,

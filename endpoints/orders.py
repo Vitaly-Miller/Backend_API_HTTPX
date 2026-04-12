@@ -12,7 +12,7 @@ class Orders(APIClient):
     ENDPOINT = '/orders'
 
 
-    # ==================================================== ✨HELPERS ===================================================
+    #==================================================== ✨HELPERS ====================================================
     # Create an order (+ Save Order ID to .env)
     def create_order(self, headers=Payload.token, json=Payload.create_order):
         response = self.post(self.ENDPOINT, json=json, headers=headers)

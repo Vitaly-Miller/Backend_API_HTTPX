@@ -1,5 +1,5 @@
 """
-Functions
+Tools
 """
 import inspect
 import json
@@ -10,7 +10,7 @@ from formatting.colors import ANSI
 
 #=======================================================================================================================
 class Tool:
-    #-------------------- Get Test name -------------------
+    #----------------------------------------------- Get Test name -----------------------------------------------------
     @staticmethod
     def name_test():
         stack = inspect.stack()
@@ -19,9 +19,8 @@ class Tool:
         check = stack[1].function
         return f'👉[{file}] --> [{test}] -> [{check}]\n'
 
-
-    #------------------- Save & Read .env -----------------
-    # Save key-value to .env
+    #-------------------------------------------- 💾Save & Read .env ---------------------------------------------------
+    # Save KEY-VALUE to .env
     @staticmethod
     def save_env(key, env_key: str):
         try:
@@ -29,21 +28,23 @@ class Tool:
         except Exception: # NOQA
             print(f'\t{ANSI.RED}⚠️ NOT Saved to .env ⚠️: {ANSI.ORANGE}"{key}"{ANSI.RESET}')
 
-    # Read value from .env
+    # Read VALUE from .env
     @staticmethod
     def read_env(env_key: str):
         key_value = dotenv_values('.env')      # ← перечитывает файл каждый раз
         return key_value.get(env_key)
 
-    # 💾 Saving User data to .env
+    # Saving USER DATA to .env (3-in-1)
     @staticmethod
     def save_user_data(response):
-        Tool.save_env(json.loads(response.request.content)['clientName'], 'CLIENT_NAME')    # from Request body ⮕
-        Tool.save_env(json.loads(response.request.content)['clientEmail'], 'CLIENT_EMAIL')  # from Request body ⮕
-        Tool.save_env(response.json()['accessToken'], 'ACCESS_TOKEN')                       # from Response body ⬅︎
+        request_body = json.loads(response.request.content)
+        response_body = response.json()
+        Tool.save_env(request_body['clientName'], 'CLIENT_NAME')
+        Tool.save_env(request_body['clientEmail'], 'CLIENT_EMAIL')
+        Tool.save_env(response_body['accessToken'], 'ACCESS_TOKEN')
 
-    #------------- ✨API REPORT in console ---------------
-    """ ⚠️ USE IN THE FINAL TEST """
+    #----------------------------------------- ✨API REPORT in console -------------------------------------------------
+    """ ⚠️USE IN THE FINAL TEST """
     @staticmethod
     def api_report(response):
         Report.api_title()
@@ -55,3 +56,5 @@ class Tool:
         Report.api_response_body(response)
         Report.api_request_headers(response)
         Report.api_response_headers(response)
+
+    #-------------------------------------------------------------------------------------------------------------------
